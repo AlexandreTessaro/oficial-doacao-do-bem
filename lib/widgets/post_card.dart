@@ -11,7 +11,9 @@ import 'package:instagram_clone_flutter/widgets/like_animation.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+// Widget que representa um card de postagem.
 class PostCard extends StatefulWidget {
+  // Dados da postagem passados como argumento.
   final snap;
   const PostCard({
     Key? key,
@@ -22,16 +24,20 @@ class PostCard extends StatefulWidget {
   State<PostCard> createState() => _PostCardState();
 }
 
+// Estado do widget PostCard.
 class _PostCardState extends State<PostCard> {
   int commentLen = 0;
   bool isLikeAnimating = false;
 
+  // Inicialização do estado.
   @override
   void initState() {
     super.initState();
+    // Obtém o número de comentários.
     fetchCommentLen();
   }
 
+  // Método para obter o número de comentários.
   fetchCommentLen() async {
     try {
       QuerySnapshot snap = await FirebaseFirestore.instance
@@ -49,6 +55,7 @@ class _PostCardState extends State<PostCard> {
     setState(() {});
   }
 
+  // Método para excluir uma postagem.
   deletePost(String postId) async {
     try {
       await FireStoreMethods().deletePost(postId);
@@ -60,11 +67,15 @@ class _PostCardState extends State<PostCard> {
     }
   }
 
+  // Método que constrói a interface do widget.
   @override
   Widget build(BuildContext context) {
+    // Obtém o usuário atual do provedor.
     final model.User user = Provider.of<UserProvider>(context).getUser;
+    // Obtém a largura da tela.
     final width = MediaQuery.of(context).size.width;
 
+    // Retorna um container que representa o card de postagem.
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -77,6 +88,7 @@ class _PostCardState extends State<PostCard> {
       ),
       child: Column(
         children: [
+          // Cabeçalho da postagem com avatar, nome do usuário e opções de exclusão.
           Container(
             padding: const EdgeInsets.symmetric(
               vertical: 4,
@@ -84,6 +96,7 @@ class _PostCardState extends State<PostCard> {
             ).copyWith(right: 0),
             child: Row(
               children: <Widget>[
+                // Avatar do usuário que fez a postagem.
                 CircleAvatar(
                   radius: 16,
                   backgroundImage: NetworkImage(
@@ -99,6 +112,7 @@ class _PostCardState extends State<PostCard> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        // Nome do usuário que fez a postagem.
                         Text(
                           widget.snap['username'].toString(),
                           style: const TextStyle(
@@ -109,39 +123,45 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                 ),
+                // Ícone de opções, como excluir a postagem (apenas para o próprio usuário).
                 widget.snap['uid'].toString() == user.uid
                     ? IconButton(
                         onPressed: () {
+                          // Exibe um diálogo de opções para o usuário.
                           showDialog(
                             useRootNavigator: false,
                             context: context,
                             builder: (context) {
                               return Dialog(
                                 child: ListView(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
-                                    shrinkWrap: true,
-                                    children: [
-                                      'Delete',
-                                    ]
-                                        .map(
-                                          (e) => InkWell(
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 12,
-                                                        horizontal: 16),
-                                                child: Text(e),
-                                              ),
-                                              onTap: () {
-                                                deletePost(
-                                                  widget.snap['postId']
-                                                      .toString(),
-                                                );
-                                                Navigator.of(context).pop();
-                                              }),
-                                        )
-                                        .toList()),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 16),
+                                  shrinkWrap: true,
+                                  children: [
+                                    // Opção para excluir a postagem.
+                                    'Delete',
+                                  ]
+                                  .map(
+                                    (e) => InkWell(
+                                      child: Container(
+                                        padding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 12,
+                                                horizontal: 16),
+                                        child: Text(e),
+                                      ),
+                                      onTap: () {
+                                        // Chama o método para excluir a postagem.
+                                        deletePost(
+                                          widget.snap['postId']
+                                              .toString(),
+                                        );
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  )
+                                  .toList(),
+                                ),
                               );
                             },
                           );
@@ -152,8 +172,10 @@ class _PostCardState extends State<PostCard> {
               ],
             ),
           ),
+          // Área da postagem, incluindo a imagem e a animação de curtir.
           GestureDetector(
             onDoubleTap: () {
+              // Chama o método para curtir a postagem ao toque duplo.
               FireStoreMethods().likePost(
                 widget.snap['postId'].toString(),
                 user.uid,
@@ -166,6 +188,7 @@ class _PostCardState extends State<PostCard> {
             child: Stack(
               alignment: Alignment.center,
               children: [
+                // Exibe a imagem da postagem.
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.35,
                   width: double.infinity,
@@ -174,6 +197,7 @@ class _PostCardState extends State<PostCard> {
                     fit: BoxFit.cover,
                   ),
                 ),
+                // Animação de coração ao curtir a postagem.
                 AnimatedOpacity(
                   duration: const Duration(milliseconds: 200),
                   opacity: isLikeAnimating ? 1 : 0,
@@ -197,8 +221,10 @@ class _PostCardState extends State<PostCard> {
               ],
             ),
           ),
+          // Ícones de interação: curtir, comentar, enviar e salvar.
           Row(
             children: <Widget>[
+              // Ícone de curtir, com animação.
               LikeAnimation(
                 isAnimating: widget.snap['likes'].contains(user.uid),
                 smallLike: true,
@@ -218,6 +244,7 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
               ),
+              // Ícone de comentários, abre a tela de comentários ao ser pressionado.
               IconButton(
                 icon: const Icon(
                   Icons.comment_outlined,
@@ -230,11 +257,13 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
               ),
+              // Ícone de enviar mensagem privada (não implementado).
               IconButton(
                   icon: const Icon(
                     Icons.send,
                   ),
                   onPressed: () {}),
+              // Ícone de salvar a postagem (não implementado).
               Expanded(
                   child: Align(
                 alignment: Alignment.bottomRight,
@@ -243,21 +272,25 @@ class _PostCardState extends State<PostCard> {
               ))
             ],
           ),
+          // Seção de informações da postagem: número de curtidas, descrição, data e botão para ver todos os comentários.
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                // Número de curtidas.
                 DefaultTextStyle(
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(fontWeight: FontWeight.w800),
-                    child: Text(
-                      '${widget.snap['likes'].length} likes',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    )),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(fontWeight: FontWeight.w800),
+                  child: Text(
+                    '${widget.snap['likes'].length} likes',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+                // Descrição da postagem.
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.only(
@@ -280,6 +313,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                 ),
+                // Botão para ver todos os comentários.
                 InkWell(
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 4),
@@ -299,6 +333,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                 ),
+                // Data da postagem.
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(

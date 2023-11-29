@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Constantes das cores pra facilitar o uso.
 const mobileBackgroundColor = Colors.black;
 const mobileBackgroundColorWhite = Colors.white;
 const webBackgroundColor = Color.fromRGBO(18, 18, 18, 1);

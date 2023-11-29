@@ -4,9 +4,11 @@ import 'package:instagram_clone_flutter/models/post.dart';
 import 'package:instagram_clone_flutter/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';
 
+// Classe que fornece métodos para interagir com o Firestore relacionados a posts.
 class FireStoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // Método assíncrono para fazer upload de um novo post para o Firestore.
   Future<String> uploadPost(String description, Uint8List file, String uid,
       String username, String profImage) async {
     String res = "Some error occurred";
@@ -32,6 +34,7 @@ class FireStoreMethods {
     return res;
   }
 
+  // Método assíncrono para lidar com a lógica de "curtir" um post.
   Future<String> likePost(String postId, String uid, List likes) async {
     String res = "Some error occurred";
     try {
@@ -51,6 +54,7 @@ class FireStoreMethods {
     return res;
   }
 
+  // Método assíncrono para postar um comentário em um post.
   Future<String> postComment(String postId, String text, String uid,
       String name, String profilePic) async {
     String res = "Some error occurred";
@@ -80,7 +84,7 @@ class FireStoreMethods {
     return res;
   }
 
-  // Delete Post
+  // Método assíncrono para excluir um post.
   Future<String> deletePost(String postId) async {
     String res = "Some error occurred";
     try {
@@ -92,6 +96,7 @@ class FireStoreMethods {
     return res;
   }
 
+  // Método assíncrono para seguir ou deixar de seguir um usuário.
   Future<void> followUser(String uid, String followId) async {
     try {
       DocumentSnapshot snap =

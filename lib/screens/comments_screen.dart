@@ -8,6 +8,7 @@ import 'package:instagram_clone_flutter/utils/utils.dart';
 import 'package:instagram_clone_flutter/widgets/comment_card.dart';
 import 'package:provider/provider.dart';
 
+// Tela para exibir e adicionar comentários a uma postagem.
 class CommentsScreen extends StatefulWidget {
   final postId;
   const CommentsScreen({Key? key, required this.postId}) : super(key: key);
@@ -16,12 +17,15 @@ class CommentsScreen extends StatefulWidget {
   _CommentsScreenState createState() => _CommentsScreenState();
 }
 
+// Estado da tela CommentsScreen.
 class _CommentsScreenState extends State<CommentsScreen> {
   final TextEditingController commentEditingController =
-      TextEditingController();
+      TextEditingController(); 
 
+  // Função para postar um comentário.
   void postComment(String uid, String name, String profilePic) async {
     try {
+      // Chama o método para adicionar um comentário ao Firestore.
       String res = await FireStoreMethods().postComment(
         widget.postId,
         commentEditingController.text,
@@ -30,11 +34,11 @@ class _CommentsScreenState extends State<CommentsScreen> {
         profilePic,
       );
 
-      if (res != 'successo') {
+      if (res != 'success') {
         if (context.mounted) showSnackBar(context, res);
       }
       setState(() {
-        commentEditingController.text = "";
+        commentEditingController.text = ""; 
       });
     } catch (err) {
       showSnackBar(

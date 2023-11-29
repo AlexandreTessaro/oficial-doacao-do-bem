@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/global_variable.dart';
 
+// Widget para o layout em telas web.
 class WebScreenLayout extends StatefulWidget {
   const WebScreenLayout({Key? key}) : super(key: key);
 
@@ -9,32 +10,35 @@ class WebScreenLayout extends StatefulWidget {
   State<WebScreenLayout> createState() => _WebScreenLayoutState();
 }
 
+// Estado do widget WebScreenLayout.
 class _WebScreenLayoutState extends State<WebScreenLayout> {
-  int _page = 0;
+  int _page = 0; 
   late PageController pageController; 
 
   @override
   void initState() {
     super.initState();
-    pageController = PageController();
+    pageController = PageController(); 
   }
 
   @override
   void dispose() {
     super.dispose();
-    pageController.dispose();
+    pageController.dispose(); 
   }
 
+  // Função chamada quando a página muda.
   void onPageChanged(int page) {
     setState(() {
-      _page = page;
+      _page = page; 
     });
   }
 
+  // Função chamada ao clicar em um ícone de navegação.
   void navigationTapped(int page) {
-    pageController.jumpToPage(page);
+    pageController.jumpToPage(page); 
     setState(() {
-      _page = page;
+      _page = page; 
     });
   }
 
@@ -42,7 +46,7 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mobileBackgroundColor,
+        backgroundColor: mobileBackgroundColor, 
         centerTitle: false,
         actions: [
           IconButton(
@@ -77,9 +81,9 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
       ),
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
-        controller: pageController,
-        onPageChanged: onPageChanged,
-        children: homeScreenItems,
+        controller: pageController, 
+        onPageChanged: onPageChanged, 
+        children: homeScreenItems, 
       ),
     );
   }

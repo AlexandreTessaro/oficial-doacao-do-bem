@@ -3,9 +3,11 @@ import 'package:instagram_clone_flutter/providers/user_provider.dart';
 import 'package:instagram_clone_flutter/utils/global_variable.dart';
 import 'package:provider/provider.dart';
 
+// Widget que ajusta o layout de acordo com o tamanho da tela.
 class ResponsiveLayout extends StatefulWidget {
-  final Widget mobileScreenLayout;
-  final Widget webScreenLayout;
+  final Widget mobileScreenLayout; 
+  final Widget webScreenLayout; 
+  
   const ResponsiveLayout({
     Key? key,
     required this.mobileScreenLayout,
@@ -20,13 +22,13 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   void initState() {
     super.initState();
-    addData();
+    addData(); 
   }
 
+  // Função para adicionar dados do usuário.
   addData() async {
-    UserProvider userProvider =
-        Provider.of<UserProvider>(context, listen: false);
-    await userProvider.refreshUser();
+    UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
+    await userProvider.refreshUser(); 
   }
 
   @override
@@ -35,7 +37,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
       if (constraints.maxWidth > webScreenSize) {
         return widget.webScreenLayout;
       }
-      return widget.mobileScreenLayout;
+      return widget.mobileScreenLayout; 
     });
   }
 }

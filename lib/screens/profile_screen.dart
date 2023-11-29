@@ -8,6 +8,7 @@ import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/utils.dart';
 import 'package:instagram_clone_flutter/widgets/follow_button.dart';
 
+// Tela de perfil de usuário.
 class ProfileScreen extends StatefulWidget {
   final String uid;
   const ProfileScreen({Key? key, required this.uid}) : super(key: key);
@@ -16,6 +17,7 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
+// Estado da tela de perfil de usuário.
 class _ProfileScreenState extends State<ProfileScreen> {
   var userData = {};
   int postLen = 0;
@@ -30,6 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     getData();
   }
 
+  // Obtém os dados do usuário e de suas postagens.
   getData() async {
     setState(() {
       isLoading = true;
@@ -244,6 +247,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
   }
 
+  // Constrói uma coluna de estatísticas.
   Column buildStatColumn(int num, String label) {
     return Column(
       mainAxisSize: MainAxisSize.min,

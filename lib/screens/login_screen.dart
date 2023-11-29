@@ -9,6 +9,7 @@ import 'package:instagram_clone_flutter/utils/global_variable.dart';
 import 'package:instagram_clone_flutter/utils/utils.dart';
 import 'package:instagram_clone_flutter/widgets/text_field_input.dart';
 
+// Tela de login do aplicativo.
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -16,6 +17,7 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+// Estado da tela de login.
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -28,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController.dispose();
   }
 
+  // Função para realizar o login do usuário.
   void loginUser() async {
     setState(() {
       _isLoading = true;
@@ -36,6 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text, password: _passwordController.text);
     if (res == 'success') {
       if (context.mounted) {
+        // Navega para a tela principal após o login.
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (context) => const ResponsiveLayout(
@@ -78,17 +82,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(),
               ),
               const SizedBox(
-                height: 0,  
+                height: 0,
               ),
               const Text(
-                'Conecte-se',  
+                'Conecte-se',
                 style: TextStyle(
-                  fontSize: 32,  
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(
-                height: 75,  
+                height: 75,
               ),
               TextFieldInput(
                 hintText: 'Insira seu email',
@@ -132,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 12,
               ),
               const SizedBox(
-                height: 8,  
+                height: 8,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -4,6 +4,7 @@ import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/global_variable.dart';
 import 'package:instagram_clone_flutter/widgets/post_card.dart';
 
+// Tela principal que exibe a lista de postagens (feed).
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
 
@@ -11,6 +12,7 @@ class FeedScreen extends StatefulWidget {
   State<FeedScreen> createState() => _FeedScreenState();
 }
 
+// Estado da tela FeedScreen.
 class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 vertical: width > webScreenSize ? 15 : 0,
               ),
               child: PostCard(
-                snap: snapshot.data!.docs[index].data(),
+                snap: snapshot.data!.docs[index].data(), 
               ),
             ),
           );

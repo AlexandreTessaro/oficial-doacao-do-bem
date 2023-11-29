@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/global_variable.dart';
 
+// Widget para a tela principal em dispositivos móveis.
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({Key? key}) : super(key: key);
 
@@ -10,28 +11,31 @@ class MobileScreenLayout extends StatefulWidget {
   State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
 }
 
+// Estado do widget MobileScreenLayout.
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
-  int _page = 0;
+  int _page = 0; 
   late PageController pageController; 
 
   @override
   void initState() {
     super.initState();
-    pageController = PageController();
+    pageController = PageController(); 
   }
 
   @override
   void dispose() {
     super.dispose();
-    pageController.dispose();
+    pageController.dispose(); 
   }
 
+  // Callback chamada quando a página é alterada.
   void onPageChanged(int page) {
     setState(() {
-      _page = page;
+      _page = page; 
     });
   }
 
+  // Função para navegar até uma página específica.
   void navigationTapped(int page) {
     pageController.jumpToPage(page);
   }
@@ -52,7 +56,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               Icons.home,
               color: (_page == 0) ? primaryColor : secondaryColor,
             ),
-            label: '',
+            label: '', 
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
@@ -78,8 +82,8 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             backgroundColor: primaryColor,
           ),
         ],
-        onTap: navigationTapped,
-        currentIndex: _page,
+        onTap: navigationTapped, 
+        currentIndex: _page, 
       ),
     );
   }

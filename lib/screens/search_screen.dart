@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:instagram_clone_flutter/screens/profile_screen.dart';
 import 'package:instagram_clone_flutter/utils/colors.dart';
 
+// Tela de pesquisa, onde é possível buscar usuários e visualizar postagens.
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
@@ -11,6 +12,7 @@ class SearchScreen extends StatefulWidget {
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
+// Estado da tela de pesquisa.
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
   bool isShowUsers = false;
@@ -87,6 +89,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   );
                 }
 
+                // Utiliza o Flutter Staggered Grid View para exibir postagens em uma grade estilizada.
                 return MasonryGridView.count(
                   crossAxisCount: 3,
                   itemCount: (snapshot.data! as dynamic).docs.length,

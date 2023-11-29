@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone_flutter/providers/user_provider.dart';
@@ -8,6 +7,7 @@ import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/utils.dart';
 import 'package:provider/provider.dart';
 
+// Tela para adicionar uma nova publicação.
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({Key? key}) : super(key: key);
 
@@ -15,11 +15,14 @@ class AddPostScreen extends StatefulWidget {
   _AddPostScreenState createState() => _AddPostScreenState();
 }
 
+// Estado da tela AddPostScreen.
 class _AddPostScreenState extends State<AddPostScreen> {
   Uint8List? _file;
-  bool isLoading = false;
-  final TextEditingController _descriptionController = TextEditingController();
+  bool isLoading = false; 
+  final TextEditingController _descriptionController =
+      TextEditingController(); 
 
+  // Função para selecionar uma imagem da câmera ou galeria.
   _selectImage(BuildContext parentContext) async {
     return showDialog(
       context: parentContext,
@@ -60,6 +63,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     );
   }
 
+  // Função para publicar a imagem.
   void postImage(String uid, String username, String profImage) async {
     setState(() {
       isLoading = true;
@@ -72,7 +76,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         username,
         profImage,
       );
-      if (res == "successo") {
+      if (res == "success") {
         setState(() {
           isLoading = false;
         });
@@ -82,7 +86,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
             'Publicado',
           );
         }
-        clearImage();
+        clearImage(); 
       } else {
         if (context.mounted) {
           showSnackBar(context, res);
@@ -90,7 +94,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
       }
     } catch (err) {
       setState(() {
-        isLoading = false;
+        isLoading = false; 
       });
       showSnackBar(
         context,
@@ -99,6 +103,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     }
   }
 
+  // Função para limpar a imagem selecionada.
   void clearImage() {
     setState(() {
       _file = null;

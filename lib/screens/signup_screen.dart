@@ -10,6 +10,7 @@ import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/utils.dart';
 import 'package:instagram_clone_flutter/widgets/text_field_input.dart';
 
+// Tela de registro de usuário.
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
@@ -17,6 +18,7 @@ class SignupScreen extends StatefulWidget {
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
+// Estado da tela de registro de usuário.
 class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -33,6 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
     _usernameController.dispose();
   }
 
+  // Função para registrar um usuário.
   void signUpUser() async {
     setState(() {
       _isLoading = true;
@@ -68,6 +71,7 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
+  // Função para selecionar uma imagem da galeria.
   selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
     setState(() {
@@ -91,18 +95,19 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Container(),
               ),
               const SizedBox(
-                height: 20,  
+                height: 20,
               ),
               const Text(
-                'Inscrever-se',  
+                'Inscrever-se',
                 style: TextStyle(
-                  fontSize: 28,  
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(
                 height: 40,
               ),
+              // Exibe um círculo de avatar com a imagem selecionada ou uma imagem padrão.
               Stack(
                 children: [
                   _image != null
@@ -130,6 +135,7 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 24,
               ),
+              // Campos de entrada de texto para nome, email, senha e descrição.
               TextFieldInput(
                 hintText: 'Insira seu nome',
                 textInputType: TextInputType.text,
@@ -163,6 +169,7 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 24,
               ),
+              // Botão para realizar o registro.
               InkWell(
                 onTap: signUpUser,
                 child: Container(
@@ -187,6 +194,7 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 12,
               ),
+              // Texto para navegar de volta à tela de login.
               InkWell(
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
