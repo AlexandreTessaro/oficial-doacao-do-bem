@@ -23,6 +23,6 @@ Bem-vindo ao *Aplicativo Doação do Bem*! Este projeto foi desenvolvido por *Al
 ### 6. Executar pelo Emulador do Android (Opcional):
    Se preferir, você também pode executar o aplicativo diretamente no emulador do Android pelo *VSCode*.
 
-##  Agora você está pronto para explorar o *Aplicativo Doação do Bem* e contribuir para esta causa nobre! Se encontrar problemas ou tiver dúvidas, consulte a documentação ou entre em contato com os desenvolvedores.
+###  Agora você está pronto para explorar o *Aplicativo Doação do Bem* e contribuir para esta causa nobre! Se encontrar problemas ou tiver dúvidas, consulte a documentação ou entre em contato com os desenvolvedores.
 
-## Agradecemos por apoiar o *Projeto Doação do Bem*!
+### Agradecemos por apoiar o *Projeto Doação do Bem*!
