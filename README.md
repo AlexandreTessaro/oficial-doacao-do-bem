@@ -12,7 +12,7 @@ Bem-vindo ao *Aplicativo Doação do Bem*! Este projeto foi desenvolvido por *Al
 
 ### 3. Executar o Comando de Compilação:
    No terminal do *VSCode*, execute o seguinte comando para compilar o aplicativo em um arquivo APK:
-   *flutter build apk*
+   *"flutter build apk"*
 
 ### 4. Transferir para o Celular:
    Envie o arquivo APK gerado para o seu dispositivo móvel.
@@ -23,6 +23,6 @@ Bem-vindo ao *Aplicativo Doação do Bem*! Este projeto foi desenvolvido por *Al
 ### 6. Executar pelo Emulador do Android (Opcional):
    Se preferir, você também pode executar o aplicativo diretamente no emulador do Android pelo *VSCode*.
 
-###  Agora você está pronto para explorar o *Aplicativo Doação do Bem* e contribuir para esta causa nobre! Se encontrar problemas ou tiver dúvidas, consulte a documentação ou entre em contato com os desenvolvedores.
+##  Agora você está pronto para explorar o *Aplicativo Doação do Bem* e contribuir para esta causa nobre! Se encontrar problemas ou tiver dúvidas, consulte a documentação ou entre em contato com os desenvolvedores.
 
-### Agradecemos por apoiar o *Projeto Doação do Bem*!
+## Agradecemos por apoiar o *Projeto Doação do Bem*!
