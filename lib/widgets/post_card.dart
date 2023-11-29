@@ -66,7 +66,6 @@ class _PostCardState extends State<PostCard> {
     final width = MediaQuery.of(context).size.width;
 
     return Container(
-      // boundary needed for web
       decoration: BoxDecoration(
         border: Border.all(
           color: width > webScreenSize ? secondaryColor : mobileBackgroundColor,
@@ -78,7 +77,6 @@ class _PostCardState extends State<PostCard> {
       ),
       child: Column(
         children: [
-          // HEADER SECTION OF THE POST
           Container(
             padding: const EdgeInsets.symmetric(
               vertical: 4,
@@ -140,7 +138,6 @@ class _PostCardState extends State<PostCard> {
                                                   widget.snap['postId']
                                                       .toString(),
                                                 );
-                                                // remove the dialog box
                                                 Navigator.of(context).pop();
                                               }),
                                         )
@@ -155,7 +152,6 @@ class _PostCardState extends State<PostCard> {
               ],
             ),
           ),
-          // IMAGE SECTION OF THE POST
           GestureDetector(
             onDoubleTap: () {
               FireStoreMethods().likePost(
@@ -201,7 +197,6 @@ class _PostCardState extends State<PostCard> {
               ],
             ),
           ),
-          // LIKE, COMMENT SECTION OF THE POST
           Row(
             children: <Widget>[
               LikeAnimation(
@@ -248,7 +243,6 @@ class _PostCardState extends State<PostCard> {
               ))
             ],
           ),
-          //DESCRIPTION AND NUMBER OF COMMENTS
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(

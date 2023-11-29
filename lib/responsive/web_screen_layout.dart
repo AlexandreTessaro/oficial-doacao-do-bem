@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/global_variable.dart';
 
@@ -12,7 +11,7 @@ class WebScreenLayout extends StatefulWidget {
 
 class _WebScreenLayoutState extends State<WebScreenLayout> {
   int _page = 0;
-  late PageController pageController; // for tabs animation
+  late PageController pageController; 
 
   @override
   void initState() {
@@ -33,7 +32,6 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
   }
 
   void navigationTapped(int page) {
-    //Animating Page
     pageController.jumpToPage(page);
     setState(() {
       _page = page;
@@ -46,13 +44,6 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
         centerTitle: false,
-        /*
-        title: SvgPicture.asset(
-          'assets/ic_instagram.svg',
-          color: primaryColor,
-          height: 32,
-        ),
-        */
         actions: [
           IconButton(
             icon: Icon(
@@ -75,13 +66,6 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
             ),
             onPressed: () => navigationTapped(2),
           ),
-          /*IconButton(
-            icon: Icon(
-              Icons.favorite,
-              color: _page == 3 ? primaryColor : secondaryColor,
-            ),
-            onPressed: () => navigationTapped(3),
-          ),*/
           IconButton(
             icon: Icon(
               Icons.person,
