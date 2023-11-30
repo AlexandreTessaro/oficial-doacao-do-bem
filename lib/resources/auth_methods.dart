@@ -28,14 +28,14 @@ class AuthMethods {
     required String bio,
     required Uint8List file,
   }) async {
-    String res = "Some error Occurred";
+    String res = "Algum erro aconteceu";
     try {
       // Verifica se todos os campos necessários foram preenchidos.
       if (email.isNotEmpty ||
           password.isNotEmpty ||
           username.isNotEmpty ||
           bio.isNotEmpty ||
-          file != null) {
+          file.isNotEmpty) {
         // Cria um novo usuário no Firebase Authentication.
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
           email: email,
@@ -63,9 +63,9 @@ class AuthMethods {
             .doc(cred.user!.uid)
             .set(user.toJson());
 
-        res = "success";
+        res = "successo";
       } else {
-        res = "Please enter all the fields";
+        res = "Por favor preencha todos os campos";
       }
     } catch (err) {
       return err.toString();
@@ -78,7 +78,7 @@ class AuthMethods {
     required String email,
     required String password,
   }) async {
-    String res = "Some error Occurred";
+    String res = "Algum erro aconteceu";
     try {
       // Verifica se todos os campos necessários foram preenchidos.
       if (email.isNotEmpty || password.isNotEmpty) {
@@ -87,9 +87,9 @@ class AuthMethods {
           email: email,
           password: password,
         );
-        res = "success";
+        res = "successo";
       } else {
-        res = "Please enter all the fields";
+        res = "Por favor preencha todos os campos";
       }
     } catch (err) {
       return err.toString();
